@@ -28,7 +28,7 @@ class button():
 			for i in list(self.mark):
 				font = pygame.font.SysFont('Calibri', int((self.size - 10) / 2.5))
 				text = font.render(str(i), 1, (0,0,0))
-				win.blit(text, (self.x + (i-1)%3 * (self.size//3 + 3) + 1, self.y + (i-1)//3 * (self.size//3 + 2)))
+				win.blit(text, (self.x + (i-1)%3 * (self.size//3 + 3) + 1, self.y + (i-1)//3 * (self.size//3 + 1)))
 
 	def isOver(self, pos):
 		if pos[0] > self.x and pos[0] < self.x + self.size:
@@ -105,6 +105,7 @@ def main():
 					if pygame.key.get_mods() in (pygame.KMOD_LSHIFT, pygame.KMOD_RSHIFT):
 						chosen_tile.number[0] = 0
 						if int(chr(event.key)) == 0: chosen_tile.mark = set()
+						elif int(chr(event.key)) in chosen_tile.mark: chosen_tile.mark.remove(int(chr(event.key)))
 						else: chosen_tile.mark.add(int(chr(event.key))) 
 					else:
 						chosen_tile.mark = set()
@@ -113,10 +114,15 @@ def main():
 
 				elif event.key == pygame.K_SPACE:
 					for tile in tiles:
-						if not tile.locked: tile.number[0] = 0
+						if not tile.locked:
+							tile.number[0] = 0
+							tile.mark = set()
+
 					chosen_tile = []
 					display_errors(board, tiles, chosen_tile)
-					board.solve_backtracking(display = display, events = event_handler)
+					if pygame.key.get_mods() in (pygame.KMOD_LSHIFT, pygame.KMOD_RSHIFT):
+						board.solve_backtracking()
+					else: board.solve_backtracking(display = display, events = event_handler)
 
 				elif event.key == pygame.K_ESCAPE:
 					for tile in tiles:
