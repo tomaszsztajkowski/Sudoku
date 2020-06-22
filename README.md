@@ -10,7 +10,7 @@ left mouse button - choose a tile
 
 1 to 9 - insert a number into the tile
 
-0 - delete a number from the tile
+0 - delete the number in the tile
 
 q, w, e - load in a new random easy, medium or hard board
 
