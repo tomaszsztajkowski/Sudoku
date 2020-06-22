@@ -35,6 +35,7 @@ python GUI.py
 - spacebar - start solving
 - shift + spacebar - solve without animation
 - '-' and '='- while solving decrease and increase the speed of solving
+###### sidenote: don't be suprised if solving time changes drastically or solving easier ones takes more time than the hard ones, backtracking method does not take into acount deterministic difficulty
 - escape - clear the board
 #
 <a href="https://imgur.com/oDpyWtd"><img src="https://i.imgur.com/oDpyWtd.png" title="source: imgur.com" /></a>
