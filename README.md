@@ -5,14 +5,14 @@
 
 ### Installation
 - Install Python 3.x, preferably Python 3.8.2
-- Install pygame module with pip
+- Install needed modules by running the command below in the terminal
 ```shell
-pip install pygame
+pip install -r requirements.txt
 ```
-##### Sidenote: if Python 2.x is installed on your machine it may be required to use one of the two following commands:
+##### sidenote: if Python 2.x is installed on your machine it may be required to use one of the two following commands:
 ```shell
-pip3 install pygame
-python3 -mpip install pygame
+pip3 install -r requirements.txt
+python3 -mpip install -r requirements.txt
 ```
 
 ### Setup
@@ -22,11 +22,14 @@ python3 -mpip install pygame
 ```shell
 python GUI.py
 ```
-
+## Rules
+- The big 9x9 square divided into 9 smaller 3x3 squares has to be completely filled with numbers 1 to 9
+- No line, row, or smaller square can contain repeating numbers
 ## Instructions
 - left mouse button - select a tile
 - 1 to 9 - insert a number into the selected tile
 - shift + 1 to 9 - insert a mark with the number into the selected tile
+###### sidenote: multiple marks can be inserted into one tile, marks do not affect validity check
 - 0 - clear the selected tile
 - q, w, e - load in a new map (easy, medium, hard)
 - spacebar - start solving
