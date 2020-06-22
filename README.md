@@ -4,7 +4,7 @@
 <a href="https://imgur.com/JP4TpR3"><img src="https://i.imgur.com/JP4TpR3.gif" title="source: imgur.com" /></a>
 
 ### Installation
-
+- Python 3.x required
 - Install pygame module with pip
 ```shell
 pip install pygame
