@@ -39,7 +39,7 @@ class Sudoku:
                 self.delay += e
                 if self.delay < 1: self.delay = 1
 
-        if display:                                                                         # 'the one below' ;)
+        if display:                                                                         # 'the one below'
             if self.counter == self.delay:
                         display()
                         self.counter = 0
