@@ -12,6 +12,7 @@ class button():
 		self.size = size
 		self.number = number
 		self.locked = locked
+		self.mark = set()
 
 
 	def draw(self, win):
@@ -23,6 +24,11 @@ class button():
 			text = font.render(str(self.number[0]), 1, (0,0,0))
 			win.blit(text, (self.x + (self.size//2 - text.get_width()//2 - 1), self.y + (self.size//2 - text.get_height()//2 + 2)))
 
+		if self.mark:
+			for i in list(self.mark):
+				font = pygame.font.SysFont('Calibri', int((self.size - 10) / 2.5))
+				text = font.render(str(i), 1, (0,0,0))
+				win.blit(text, (self.x + (i-1)%3 * (self.size//3 + 3) + 1, self.y + (i-1)//3 * (self.size//3 + 2)))
 
 	def isOver(self, pos):
 		if pos[0] > self.x and pos[0] < self.x + self.size:
@@ -96,7 +102,14 @@ def main():
 
 			if event.type == pygame.KEYDOWN:
 				if chosen_tile and chr(event.key).isnumeric():
-					chosen_tile.number[0] = int(chr(event.key))
+					if pygame.key.get_mods() in (pygame.KMOD_LSHIFT, pygame.KMOD_RSHIFT):
+						chosen_tile.number[0] = 0
+						if int(chr(event.key)) == 0: chosen_tile.mark = set()
+						else: chosen_tile.mark.add(int(chr(event.key))) 
+					else:
+						chosen_tile.mark = set()
+						if chosen_tile.number[0] == int(chr(event.key)): chosen_tile.number[0] = 0
+						else: chosen_tile.number[0] = int(chr(event.key))
 
 				elif event.key == pygame.K_SPACE:
 					for tile in tiles:
