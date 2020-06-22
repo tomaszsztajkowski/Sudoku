@@ -29,8 +29,8 @@ class Sudoku:
         return True
 
 
-    counter = 0
-    delay = 1
+    counter = 0         # those two are used for controlling the frequency of displaying new numbers
+    delay = 1           # the method is recursive hence the placement out of the method
     def solve_backtracking(self, index= 0, events= None, display= None):
         if events:                                                                          # this if and the one below are used for displaying
             e = events()                                                                    # the number on screen while solving the sudoku
