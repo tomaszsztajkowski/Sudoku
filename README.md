@@ -4,10 +4,15 @@
 <a href="https://imgur.com/JP4TpR3"><img src="https://i.imgur.com/JP4TpR3.gif" title="source: imgur.com" /></a>
 
 ### Installation
-- Python 3.x required
+- Install Python 3.x, preferably Python 3.8.2
 - Install pygame module with pip
 ```shell
 pip install pygame
+```
+##### Sidenote: if Python 2.x is installed on your machine it may be required to use one of the two following commands:
+```shell
+pip3 install pygame
+python3 -mpip install pygame
 ```
 
 ### Setup
