@@ -1,6 +1,7 @@
 import pygame
 import sudoku
 from random import randint
+from time import time
 
 
 
@@ -69,28 +70,29 @@ def main():
 		for i in range(4): pygame.draw.line(screen, (0, 0, 0), (8 + i*(tile_size+2)*3, 8), (8 + i*(tile_size+2)*3, (tile_size+3)*9), 4)
 		pygame.display.update()
 
-	pygame.init()
-	tile_size = 60																			# change if you want to make the window bigger
-	screen = pygame.display.set_mode(((tile_size+2)*9 + 20, (tile_size+2)*9 + 20))
-	pygame.display.set_caption('Sudoku')
-	pygame.display.set_icon(pygame.image.load('icon.png'))
-
+	
+	tile_size = 60		# change if you want to make the window bigger
+	difficulty = {pygame.K_q: 'novice', pygame.K_w: 'intermediate', pygame.K_e: 'expert'}
 	# code = '000000000000003085001020000000507000004000100090000000500000073002010000000040009' # the worst case scenario
 	code = '530070000600195000098000060800060003400803001700020006060000280000419005000080079' # wikipedia example
 
 	board, tiles = new_sudoku(code, tile_size)
-	
+	screen = pygame.display.set_mode(((tile_size+2)*9 + 20, (tile_size+2)*9 + 20))
+	title = 'Intermediate'
+	clock_start = int(time())
+	pygame.display.set_icon(pygame.image.load('intermediate.png'))
 	chosen_tile = None
 	running = True
-
+	
+	pygame.init()
 	while running:
+		display_errors(board, tiles, chosen_tile)
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				running = False
 
 			if event.type == pygame.MOUSEBUTTONDOWN:
 				if event.button == 1:
-					display_errors(board, tiles, chosen_tile)
 
 					mouse_pos = pygame.mouse.get_pos()
 					for i in range(81):
@@ -99,6 +101,8 @@ def main():
 							chosen_tile = tiles[i]
 							chosen_tile.color = (chosen_tile.color[0]- 50, chosen_tile.color[1] - 50, chosen_tile.color[2])
 							break
+				elif event.button == 3:
+					chosen_tile = None
 
 			if event.type == pygame.KEYDOWN:
 				if chosen_tile and chr(event.key).isnumeric():
@@ -118,33 +122,28 @@ def main():
 							tile.number[0] = 0
 							tile.mark = set()
 
-					chosen_tile = []
+					chosen_tile = None
 					display_errors(board, tiles, chosen_tile)
 					if pygame.key.get_mods() in (pygame.KMOD_LSHIFT, pygame.KMOD_RSHIFT):
-						board.solve_backtracking()
+						board.solve_backtracking(events=event_handler)
 					else: board.solve_backtracking(display = display, events = event_handler)
 
 				elif event.key == pygame.K_ESCAPE:
 					for tile in tiles:
 						if not tile.locked: tile.number[0] = 0
 
-				elif event.key == pygame.K_q:
-					with open('easy.txt', 'r') as f:
+				elif event.key in (pygame.K_q, pygame.K_w, pygame.K_e):
+					
+					with open(difficulty[event.key] + '.txt', 'r') as f:
 						code = f.read().split('\n')[randint(0, 49)]
 					board, tiles = new_sudoku(code, tile_size)
+					title = difficulty[event.key].title()
+					clock_start = time()
+					pygame.display.set_icon(pygame.image.load(difficulty[event.key] + '.png'))
 
-				elif event.key == pygame.K_w:
-					with open('medium.txt', 'r') as f:
-						code = f.read().split('\n')[randint(0, 49)]
-					board, tiles = new_sudoku(code, tile_size)
-
-				elif event.key == pygame.K_e:
-					with open('hard.txt', 'r') as f:
-						code = f.read().split('\n')[randint(0, 49)]
-					board, tiles = new_sudoku(code, tile_size)
-
-				display_errors(board, tiles, chosen_tile)
-
+		if [0] in board.data:
+			clock = str(int(time() - clock_start)).rjust(2, '0')
+		pygame.display.set_caption(title + ' Sudoku' + f' {int(clock)//60}:{clock}')
 		display()
 	
 main()
