@@ -25,7 +25,8 @@ python GUI.py
 - 0 - clear the selected tile
 - q, w, e - load in a new map (easy, medium, hard)
 - spacebar - start solving
+- shift + spacebar - solve without animation
 - '-' and '='- while solving decrease and increase the speed of solving
 - escape - clear the board
 #
-<a href="https://imgur.com/Wgb2chb"><img src="https://i.imgur.com/Wgb2chb.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/oDpyWtd"><img src="https://i.imgur.com/oDpyWtd.png" title="source: imgur.com" /></a>
