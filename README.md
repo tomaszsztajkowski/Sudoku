@@ -21,10 +21,11 @@ python GUI.py
 ## Instructions
 - left mouse button - select a tile
 - 1 to 9 - insert a number into the tile
+- shift + 1 to 9 - insert a mark with the number into the tile
 - 0 - delete the number from a tile
 - q, w, e - load in a new map (easy, medium, hard)
 - spacebar - start solving
 - '-' and '='- while solving decrease and increase the speed of solving
 - escape - clear the board
 #
-<a href="https://imgur.com/GG0DC9z"><img src="https://i.imgur.com/GG0DC9z.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/Wgb2chb"><img src="https://i.imgur.com/Wgb2chb.png" title="source: imgur.com" /></a>
