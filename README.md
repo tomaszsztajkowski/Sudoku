@@ -1,7 +1,7 @@
 # Sudoku
 > Simple sudoku game and solver
 ---
-## Installation
+### Installation
 
 - Install pygame module with pip
 ```shell
@@ -11,12 +11,12 @@ pip install pygame
 ### Setup
 
 - Run 'GUI.py'
-- If that doesn't work open terminal at the location of the project and type in"
+- If that doesn't work open terminal at the location of the project and type in:
 ```shell
 python GUI.py
 ```
 
-#### Instruction
+## Instructions
 - left mouse button - select a tile
 - 1 to 9 - insert a number into the tile
 - 0 - delete the number from a tile
