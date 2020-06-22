@@ -1,4 +1,4 @@
-# Sudoku by Sztajkowski
+# Sudoku by Tomasz Sztajkowski
 > a simple sudoku game and solver
 
 <a href="https://imgur.com/JP4TpR3"><img src="https://i.imgur.com/JP4TpR3.gif" title="source: imgur.com" /></a>
