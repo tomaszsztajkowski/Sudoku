@@ -3,7 +3,17 @@
 
 ***INSERT ANOTHER GRAPHIC HERE***
 
+<<<<<<< HEAD
 (https://i.imgur.com/GG0DC9z.png)
+=======
+pygame module mandatory to run
+
+HOW TO RUN:
+
+open terminal in the project location and type in "python GUI.py"
+
+At this moment only backtracking solving algorithm is available
+>>>>>>> d7f47c7a8bc34e4ceaa531aa23d25a98c47bb9d1
 
 **Recordit**
 
