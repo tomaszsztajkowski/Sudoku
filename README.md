@@ -22,6 +22,6 @@ python GUI.py
 - 0 - delete the number from a tile
 - q, w, e - load in a new map (easy, medium, hard)
 - spacebar - start solving
-- - and = - while solving decrease and increase speed of solving
+- '-' and '='- while solving decrease and increase speed of solving
 - escape - clear the board
 
