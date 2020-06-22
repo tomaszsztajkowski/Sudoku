@@ -1,5 +1,7 @@
-# Sudoku
-> Simple sudoku game and solver
+# Sudoku by Sztajkowski
+> a simple sudoku game and solver
+---
+<a href="https://imgur.com/OwuWenJ"><img src="https://i.imgur.com/OwuWenJ.gif" title="source: imgur.com" /></a>
 ---
 ### Installation
 
@@ -24,4 +26,5 @@ python GUI.py
 - spacebar - start solving
 - '-' and '='- while solving decrease and increase the speed of solving
 - escape - clear the board
-
+---
+<a href="https://imgur.com/GG0DC9z"><img src="https://i.imgur.com/GG0DC9z.png" title="source: imgur.com" /></a>
