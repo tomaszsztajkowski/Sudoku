@@ -69,14 +69,8 @@ def main():
 	pygame.display.set_caption('Sudoku')
 	pygame.display.set_icon(pygame.image.load('icon.png'))
 
-
-	with open('puzzles.txt', 'r') as f:
-		puzzles = f.read().split('\n')
-
-
-	code = puzzles.pop(randint(0, len(puzzles)-1))
 	# code = '000000000000003085001020000000507000004000100090000000500000073002010000000040009' # the worst case scenario
-	# code = '530070000600195000098000060800060003400803001700020006060000280000419005000080079' # wikipedia example
+	code = '530070000600195000098000060800060003400803001700020006060000280000419005000080079' # wikipedia example
 
 	board, tiles = new_sudoku(code, tile_size)
 	
@@ -104,16 +98,31 @@ def main():
 				if chosen_tile and chr(event.key).isnumeric():
 					chosen_tile.number[0] = int(chr(event.key))
 
-				if event.key == pygame.K_SPACE:
+				elif event.key == pygame.K_SPACE:
 					for tile in tiles:
 						if not tile.locked: tile.number[0] = 0
 					chosen_tile = []
 					display_errors(board, tiles, chosen_tile)
 					board.solve_backtracking(display = display, events = event_handler)
 
-				if event.key == pygame.K_ESCAPE:
+				elif event.key == pygame.K_ESCAPE:
 					for tile in tiles:
 						if not tile.locked: tile.number[0] = 0
+
+				elif event.key == pygame.K_q:
+					with open('easy.txt', 'r') as f:
+						code = f.read().split('\n')[randint(0, 49)]
+					board, tiles = new_sudoku(code, tile_size)
+
+				elif event.key == pygame.K_w:
+					with open('medium.txt', 'r') as f:
+						code = f.read().split('\n')[randint(0, 49)]
+					board, tiles = new_sudoku(code, tile_size)
+
+				elif event.key == pygame.K_e:
+					with open('hard.txt', 'r') as f:
+						code = f.read().split('\n')[randint(0, 49)]
+					board, tiles = new_sudoku(code, tile_size)
 
 				display_errors(board, tiles, chosen_tile)
 
