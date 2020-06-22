@@ -32,14 +32,14 @@ class Sudoku:
     counter = 0
     delay = 1
     def solve_backtracking(self, index= 0, events= None, display= None):
-        if events:
-            e = events()
-            if e == True: return True
+        if events:                                                                          # this if and the one below are used for displaying
+            e = events()                                                                    # the number on screen while solving the sudoku
+            if e == True: return True                                                       # nothing to do with the solving itself
             elif type(e) == int:
                 self.delay += e
                 if self.delay < 1: self.delay = 1
 
-        if display:
+        if display:                                                                         # 'the one below' ;)
             if self.counter == self.delay:
                         display()
                         self.counter = 0

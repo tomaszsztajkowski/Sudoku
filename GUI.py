@@ -38,10 +38,10 @@ def display_errors(sud, tiles, chosen_tile):
 	if chosen_tile: chosen_tile.color = (chosen_tile.color[0]- 50, chosen_tile.color[1] - 50, chosen_tile.color[2])
 
 
-def event_handler():
-	for event in pygame.event.get():
-		if event.type == pygame.KEYDOWN:
-			if event.key == pygame.K_EQUALS:  return 10
+def event_handler():											# used for displaying numbers while solving the sudoku
+	for event in pygame.event.get():								# ensures that pygame window events are handled so that
+		if event.type == pygame.KEYDOWN:							# no window freeze can occur
+			if event.key == pygame.K_EQUALS:  return 10				# changes the speed of displaying
 			elif event.key == pygame.K_MINUS: return -10
 			return True
 	return False
@@ -64,7 +64,7 @@ def main():
 		pygame.display.update()
 
 	pygame.init()
-	tile_size = 60
+	tile_size = 60																			# change if you want to make the window bigger
 	screen = pygame.display.set_mode(((tile_size+2)*9 + 20, (tile_size+2)*9 + 20))
 	pygame.display.set_caption('Sudoku')
 	pygame.display.set_icon(pygame.image.load('icon.png'))
