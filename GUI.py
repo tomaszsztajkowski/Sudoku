@@ -21,7 +21,7 @@ class button():
 		if self.number[0] != 0:
 			font = pygame.font.SysFont('Calibri', self.size - 10, bold= True if self.locked else False)
 			text = font.render(str(self.number[0]), 1, (0,0,0))
-			win.blit(text, (self.x + (self.size/2 - text.get_width()/2 - 1), self.y + (self.size/2 - text.get_height()/2 + 2)))
+			win.blit(text, (self.x + (self.size//2 - text.get_width()//2 - 1), self.y + (self.size//2 - text.get_height()//2 + 2)))
 
 
 	def isOver(self, pos):
