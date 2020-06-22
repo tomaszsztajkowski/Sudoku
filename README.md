@@ -20,9 +20,9 @@ python GUI.py
 
 ## Instructions
 - left mouse button - select a tile
-- 1 to 9 - insert a number into the tile
-- shift + 1 to 9 - insert a mark with the number into the tile
-- 0 - delete the number from a tile
+- 1 to 9 - insert a number into the selecteed tile
+- shift + 1 to 9 - insert a mark with the number into the selected tile
+- 0 - clear the selected tile
 - q, w, e - load in a new map (easy, medium, hard)
 - spacebar - start solving
 - '-' and '='- while solving decrease and increase the speed of solving
