@@ -83,7 +83,7 @@ def main():
 	pygame.display.set_icon(pygame.image.load('intermediate.png'))
 	chosen_tile = None
 	running = True
-	
+
 	pygame.init()
 	while running:
 		display_errors(board, tiles, chosen_tile)
@@ -142,8 +142,8 @@ def main():
 					pygame.display.set_icon(pygame.image.load(difficulty[event.key] + '.png'))
 
 		if [0] in board.data:
-			clock = str(int(time() - clock_start)).rjust(2, '0')
-		pygame.display.set_caption(title + ' Sudoku' + f' {int(clock)//60}:{clock}')
+			clock = int(time() - clock_start)
+		pygame.display.set_caption(title + ' Sudoku' + ' {}:{}'.format(clock//60, str(clock-(clock//60)*60).rjust(2, '0')))
 		display()
 	
 main()
