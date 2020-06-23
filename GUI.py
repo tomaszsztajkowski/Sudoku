@@ -5,7 +5,7 @@ from time import time
 
 
 
-class button():
+class Button():
 	def __init__(self, color, coor, size, number, locked = False):
 		self.color = color
 		self.x = 10 + (size + 2) * coor[0]
@@ -31,7 +31,7 @@ class button():
 				text = font.render(str(i), 1, (0,0,0))
 				win.blit(text, (self.x + (i-1)%3 * (self.size//3 + 3) + 1, self.y + (i-1)//3 * (self.size//3 + 1)))
 
-	def isOver(self, pos):
+	def is_over(self, pos):
 		if pos[0] > self.x and pos[0] < self.x + self.size:
 			if pos[1] > self.y and pos[1] < self.y + self.size:
 				return True
@@ -57,7 +57,7 @@ def new_sudoku(code, tile_size):
 	sud = sudoku.Sudoku(code)
 	tiles = []
 	for i in range(81):
-		tiles.append(button((255, 255, 255), (i%9, i//9), tile_size, sud.data[i], sud.data[i][0] != 0))
+		tiles.append(Button((255, 255, 255), (i%9, i//9), tile_size, sud.data[i], sud.data[i][0] != 0))
 	return (sud, tiles)
 
 
@@ -96,7 +96,7 @@ def main():
 
 					mouse_pos = pygame.mouse.get_pos()
 					for i in range(81):
-						if tiles[i].locked != True and tiles[i].isOver(mouse_pos):
+						if tiles[i].locked != True and tiles[i].is_over(mouse_pos):
 							if chosen_tile: chosen_tile.color = (chosen_tile.color[0] + 50, chosen_tile.color[1] + 50, chosen_tile.color[2])
 							chosen_tile = tiles[i]
 							chosen_tile.color = (chosen_tile.color[0]- 50, chosen_tile.color[1] - 50, chosen_tile.color[2])
@@ -106,7 +106,7 @@ def main():
 
 			if event.type == pygame.KEYDOWN:
 				if chosen_tile and ord('0')  <= event.key <= ord('9'):
-					if pygame.key.get_mods() in (pygame.KMOD_LCTRL,pygame.KMOD_LSHIFT, pygame.KMOD_RSHIFT):
+					if pygame.key.get_mods() in (pygame.KMOD_LCTRL, pygame.KMOD_LSHIFT, pygame.KMOD_RSHIFT):
 						chosen_tile.number[0] = 0
 						if int(chr(event.key)) == 0: chosen_tile.mark = set()
 						elif int(chr(event.key)) in chosen_tile.mark: chosen_tile.mark.remove(int(chr(event.key)))
