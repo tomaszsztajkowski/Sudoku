@@ -146,4 +146,4 @@ def main():
 		pygame.display.set_caption(title + ' Sudoku' + ' {}:{}'.format(clock//60, str(clock-(clock//60)*60).rjust(2, '0')))
 		display()
 	
-main()
+if __name__ == '__main__': main()
