@@ -1,7 +1,7 @@
 sqr_indexes = {str(i // 3) + str(i % 3): i for i in range(9)}           # dictionary for square indexes keys: '00' to '22', values: 0 to 8
 
 class Sudoku:
-    def __init__(self, data = None):
+    def __init__(self, data=None):
         if data: self.data = [[int(i)] for i in data]                               # convert string data to indexed pointers
         else: self.data = [[0] for i in range(81)]                                  # if no data is provided makes an empty board
 
@@ -31,7 +31,7 @@ class Sudoku:
 
     counter = 0         # those two are used for controlling the frequency of displaying new numbers
     delay = 1           # the method is recursive hence the placement out of the method
-    def solve_backtracking(self, index= 0, events= None, display= None):
+    def solve_backtracking(self, index=0, events=None, display=None):
         if events:                                                                          # this if and the one below are used for displaying
             e = events()                                                                    # the number on screen while solving the sudoku
             if e == True: return True                                                       # nothing to do with the solving itself
@@ -45,15 +45,17 @@ class Sudoku:
                         self.counter = 0
             else: self.counter += 1
 
-        if self.board[index//9][index%9][0] != 0:                                           # handles prefilled numbers
+        target_tile = self.board[index//9][index%9][0]
+
+        if target_tile != 0:                                           # handles prefilled numbers
             if index == 80: return True                                                     # -||-
             return self.solve_backtracking(index + 1, events=events, display=display)       # -||-
         
         while True:
-            self.board[index//9][index%9][0] += 1                                           # adds 1 to the number in the current position
-            if self.board[index//9][index%9][0] > 9:                                        # backtracking system, if there are no numbers left:
-                self.board[index//9][index%9][0] = 0                                        #  resets previously changed numbers
+            target_tile += 1                                           # adds 1 to the number in the current position
+            if target_tile > 9:                                        # backtracking system, if there are no numbers left:
+                target_tile = 0                                        #  resets previously changed numbers
                 return False                                                                #  returns wrong number flag
             if not self.validate_target(index): continue                                    # validity check
             if index == 80: return True                                                      # if reached the end of sudoku returns completion flag
-            if self.solve_backtracking(index + 1, events=events, display=display) == True: return True  # recursion
+            if self.solve_backtracking(index + 1, events=events, display=display): return True  # recursion
