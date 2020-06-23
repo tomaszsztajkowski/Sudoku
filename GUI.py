@@ -40,9 +40,9 @@ class Button():
 
 def display_errors(sud, tiles, chosen_tile):
 	for i in range(81):
-		if not sud.validate_target(i): tiles[i].color = (255, 200, 200) 
-		else: tiles[i].color = (255, 255, 255)
-	if chosen_tile: chosen_tile.color = (chosen_tile.color[0]- 50, chosen_tile.color[1] - 50, chosen_tile.color[2])
+		if not sud.validate_target(i):
+			if tiles[i] != chosen_tile: tiles[i].color = (255, 200, 200)
+		elif tiles[i] != chosen_tile: tiles[i].color = (255, 255, 255)
 
 
 def event_handler():											# used for displaying numbers while solving the sudoku
@@ -92,21 +92,24 @@ def main():
 				running = False
 
 			if event.type == pygame.MOUSEBUTTONDOWN:
+				mouse_pos = pygame.mouse.get_pos()
 				if event.button == 1:
-
-					mouse_pos = pygame.mouse.get_pos()
 					for i in range(81):
 						if tiles[i].locked != True and tiles[i].is_over(mouse_pos):
-							if chosen_tile: chosen_tile.color = (chosen_tile.color[0] + 50, chosen_tile.color[1] + 50, chosen_tile.color[2])
 							chosen_tile = tiles[i]
-							chosen_tile.color = (chosen_tile.color[0]- 50, chosen_tile.color[1] - 50, chosen_tile.color[2])
+							chosen_tile.color = (150, 150, 255)
 							break
+
 				elif event.button == 3:
-					chosen_tile = None
+					for i in range(81):
+						if tiles[i].locked != True and tiles[i].is_over(mouse_pos):
+							chosen_tile = tiles[i]
+							chosen_tile.color = (150, 255, 150)
+							break
 
 			if event.type == pygame.KEYDOWN:
 				if chosen_tile and ord('0')  <= event.key <= ord('9'):
-					if pygame.key.get_mods() in (pygame.KMOD_LCTRL, pygame.KMOD_LSHIFT, pygame.KMOD_RSHIFT):
+					if chosen_tile.color == (150, 255, 150):
 						chosen_tile.number[0] = 0
 						if int(chr(event.key)) == 0: chosen_tile.mark = set()
 						elif int(chr(event.key)) in chosen_tile.mark: chosen_tile.mark.remove(int(chr(event.key)))
