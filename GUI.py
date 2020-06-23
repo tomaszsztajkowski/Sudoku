@@ -106,7 +106,7 @@ def main():
 
 			if event.type == pygame.KEYDOWN:
 				if chosen_tile and chr(event.key) in '1234567890':
-					if pygame.key.get_mods() in (pygame.KMOD_LSHIFT, pygame.KMOD_RSHIFT):
+					if pygame.key.get_mods() in (pygame.KMOD_LCTRL, pygame.KMOD_RSHIFT):
 						chosen_tile.number[0] = 0
 						if int(chr(event.key)) == 0: chosen_tile.mark = set()
 						elif int(chr(event.key)) in chosen_tile.mark: chosen_tile.mark.remove(int(chr(event.key)))
