@@ -1,5 +1,3 @@
-RED_ERROR = (255, 200, 200)
-WHITE = (255, 255, 255)
-BLUE_CURSOR = (150, 150, 255)
-GREEN_CURSOR = (150, 255, 150)
-BLACK = (0, 0, 0)
+border = 10
+thick = 4
+thin = 2
